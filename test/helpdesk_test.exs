@@ -24,9 +24,33 @@ defmodule HelpdeskTest do
       Helpdesk.Projects.Ticket
       |> Ash.read!()
 
-    dbg(project_tickets)
-
     assert {:ok, _} =
              Helpdesk.Projects.fetch_ticket(project.id, ticket.id, actor: user)
+  end
+
+  test "should be able to create a project when creating a project note" do
+    create_input = %{
+      text: "This is a test project note",
+      project: %{
+        name: "Test Project"
+      }
+    }
+
+    assert %Helpdesk.Projects.ProjectNote{} =
+      Helpdesk.Projects.ProjectNote
+      |> Ash.Changeset.for_create(:create, create_input)
+      |> Ash.create!()
+  end
+
+  test "should be able to create a project when using bulk create to create a project note" do
+    create_input = %{
+      text: "This is a test project note",
+      project: %{
+        name: "Test Project"
+      }
+    }
+
+    assert [%Helpdesk.Projects.ProjectNote{}] = Ash.bulk_create!([create_input], Helpdesk.Projects.ProjectNote, :create)
+
   end
 end

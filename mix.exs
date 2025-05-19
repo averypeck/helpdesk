@@ -31,7 +31,7 @@ defmodule Helpdesk.MixProject do
     [
       {:ash_postgres, "~> 2.0"},
       {:sourceror, "~> 1.7", only: [:dev, :test]},
-      {:ash, path: "../ash", override: true},
+      {:ash, "~> 3.0"},
       {:igniter, "~> 0.5", only: [:dev, :test]},
       {:picosat_elixir, "~> 0.2"}
       # {:dep_from_hexpm, "~> 0.3.0"},

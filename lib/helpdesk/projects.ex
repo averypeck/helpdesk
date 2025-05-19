@@ -5,6 +5,7 @@ defmodule Helpdesk.Projects do
 
   alias Helpdesk.Projects.Ticket
   alias Helpdesk.Projects.Project
+  alias Helpdesk.Projects.ProjectNote
   alias Helpdesk.Projects.User
 
   resources do
@@ -13,6 +14,7 @@ defmodule Helpdesk.Projects do
     end
 
     resource Project
+    resource ProjectNote
 
     resource User
   end

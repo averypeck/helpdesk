@@ -12,10 +12,20 @@ defmodule Helpdesk.Projects.Project do
 
   actions do
     defaults [:read]
+
+    create :create do
+      primary? true
+      accept [:*]
+    end
   end
 
   attributes do
     uuid_primary_key :id
+    attribute :name, :string do
+      allow_nil? false
+      constraints min_length: 1
+      public? true
+    end
   end
 
   relationships do
@@ -32,5 +42,7 @@ defmodule Helpdesk.Projects.Project do
       destination_attribute_on_join_resource :user_id
       destination_attribute :id
     end
+
+    has_many :project_notes, Helpdesk.Projects.ProjectNote
   end
 end
