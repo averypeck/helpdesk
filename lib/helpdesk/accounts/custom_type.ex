@@ -6,13 +6,7 @@ defmodule Helpdesk.Accounts.CustomType do
     constraints: [
       fields: [
         type: [
-          type: :atom,
-          constraints: [
-            one_of: [:string, :integer, :boolean, :float, :date, :datetime, :array]
-          ]
-        ],
-        children: [
-          type: {:array, Helpdesk.Accounts.CustomType}
+          type: :atom
         ]
       ]
     ],
