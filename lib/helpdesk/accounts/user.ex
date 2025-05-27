@@ -3,7 +3,16 @@ defmodule Helpdesk.Accounts.User do
   use Ash.Resource,
     otp_app: :helpdesk,
     domain: Helpdesk.Accounts,
-    data_layer: AshPostgres.DataLayer
+    data_layer: AshPostgres.DataLayer,
+    extensions: [AshGraphql.Resource]
+
+  graphql do
+    type :user
+    queries do
+      get :get_user, :read
+    end
+    mutations []
+  end
 
   postgres do
     table "users"
@@ -12,6 +21,14 @@ defmodule Helpdesk.Accounts.User do
 
   actions do
     defaults [:read]
+
+    action :test_custom_type, {:array, Helpdesk.Accounts.CustomType} do
+      argument :test, :string
+
+      run fn _action_name, _changes ->
+        {:ok, %{result: "test"}}
+      end
+    end
   end
 
   attributes do

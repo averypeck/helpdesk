@@ -29,6 +29,7 @@ defmodule Helpdesk.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:ash_graphql, "~> 1.0"},
       {:ash_postgres, "~> 2.0"},
       {:sourceror, "~> 1.7", only: [:dev, :test]},
       {:ash, "~> 3.0"},
